@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRURU MUSEUM — Executive Presentation Web App</title>
+  
+  <!-- Favicon / Identity -->
+  <link rel="icon" type="image/jpeg" href="assets/gruru-logo.jpg">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Subtle Scanline Layer -->
+  <div class="scanline-overlay"></div>
+
+  <!-- Top Executive HUD Bar -->
+  <header class="top-hud">
+    <div class="brand-badge" onclick="window.GRURU_NAV.goToSlide(1)">
+      <div class="brand-icon-box">
+        <img src="assets/gruru-logo.jpg" alt="GRURU Logo">
+      </div>
+      <div class="brand-titles">
+        <div class="brand-title">
+          GRURU <span class="highlight">MUSEUM</span>
+        </div>
+        <div class="brand-subtitle">EXECUTIVE STRATEGIC DECK</div>
+      </div>
+    </div>
+
+    <!-- Center Slide Stepper -->
+    <div class="hud-center">
+      <div class="deck-stepper">
+        <button id="btn-prev-slide" class="nav-arrow-btn" title="Previous Slide (Left Arrow)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="slide-counter">
+          <span id="current-slide-num" class="current-num">01</span> / 12
+        </div>
+        <button id="btn-next-slide" class="nav-arrow-btn" title="Next Slide (Right Arrow or Space)">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Actions & Tools -->
+    <div class="hud-actions">
+      <button id="btn-grid-toggle" class="hud-btn" title="Show Slide Grid (G)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <span class="btn-text-hide">INDEX</span>
+      </button>
+
+      <button id="btn-notes-toggle" class="hud-btn" title="Speaker Notes (N)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        <span class="btn-text-hide">NOTES</span>
+      </button>
+
+      <button id="btn-sound-toggle" class="hud-btn active" title="Audio Effects">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
+        <span class="btn-text-hide">SOUND ON</span>
+      </button>
+
+      <button id="btn-fullscreen-toggle" class="hud-btn" title="Fullscreen (F)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+        <span class="btn-text-hide">FULLSCREEN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Deck Progress Bar -->
+  <div class="deck-progress-bar">
+    <div id="deck-progress-fill" class="deck-progress-fill"></div>
+  </div>
+
+  <!-- Main Presentation Viewport -->
+  <main class="presentation-viewport">
+
+    <!-- ================= SLIDE 01: HERO / EXECUTIVE TITLE ================= -->
+    <section class="slide-frame active" id="slide-1">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-EXEC-001</span>
+          <span class="specimen-category">OVERVIEW</span>
+          <span class="specimen-era">ERA: FUTURE ARCHAEOLOGY</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>SOURCE: STRATEGIC PROJECT BRIEF // GOOGLE ANTIGRAVITY</span>
+        </div>
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-pill">
+            <span style="color:var(--gr-ember);">✦</span> EXECUTIVE PITCH DECK • GRURU MUSEUM
+          </div>
+
+          <h1 class="hero-tagline">
+            New Knowledge.<br>
+            <span class="highlight-lime">New Storytelling.</span><br>
+            <span class="highlight-cyan">Built for Everyday Living.</span>
+          </h1>
+
+          <p class="hero-desc">
+            <strong>GRURU MUSEUM</strong> คือพิพิธภัณฑ์ความรู้ดิจิทัลแนวคิด <em>Future Archaeology</em> ที่เปลี่ยน “ความรู้ที่ซ่อนอยู่ในอดีต” ให้เป็นกราฟความรู้ที่สำรวจได้ด้วยตัวเอง และเรื่องเล่าที่คนรุ่นใหม่เข้าใจได้ภายใน 3 วินาที เพื่อนำไปใช้ได้จริงในชีวิตประจำวัน
+          </p>
+
+          <div class="hero-stats-row">
+            <div class="stat-box">
+              <div class="stat-number">3 Sec</div>
+              <div class="stat-label">Comprehension Speed</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Evidence & Sources</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-number">2-in-1</div>
+              <div class="stat-label">Booming + Graph</div>
+            </div>
+          </div>
+
+          <div style="display:flex; gap:14px; margin-top:8px;">
+            <button class="btn-primary" onclick="window.GRURU_NAV.nextSlide()">
+              เริ่มสำรวจข้อเสนอ ➔
+            </button>
+            <button class="btn-secondary" onclick="window.GRURU_NAV.goToSlide(7)">
+              ทดสอบ Data Booming ⚡
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-media-wrapper">
+          <div class="hero-image-frame">
+            <img src="assets/future-archaeology-hero.jpg" alt="GRURU Future Archaeology Hall">
+            <div class="hero-logo-corner">
+              <img src="assets/gruru-logo.jpg" alt="Official Logo">
+            </div>
+          </div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gr-fog); text-align:right;">
+            FIG 1.0 // THE FUTURE ARCHAEOLOGY LABORATORY HALL
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 02: STRATEGIC OPPORTUNITY / MARKET VACUUM ================= -->
+    <section class="slide-frame" id="slide-2">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-OPP-002</span>
+          <span class="specimen-category">MARKET VACUUM</span>
+          <span class="specimen-era">DEMAND INSIGHT 2026</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>THE SWEET SPOT: DEEP YET INSTANT</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">THE STRATEGIC MARKET VACUUM</div>
+        <h2 class="slide-title-th">ทำไมวิธีสื่อสารความรู้แบบเดิม จึงล้มเหลวกับคนยุคนี้?</h2>
+      </div>
+
+      <div class="three-second-hook">
+        <span class="three-second-badge">3-SEC GRASP</span>
+        <span>คนวัย 22–40 ปี ต้องการรู้ลึกกว่าคลิปสั้น แต่ไม่มีเวลาอ่านเปเปอร์ยาว และ <em>“ไม่อยากรู้สึกเหมือนกำลังนั่งเรียน”</em></span>
+      </div>
+
+      <div class="market-vacuum-grid">
+        <!-- Col 1 -->
+        <div class="vacuum-col">
+          <span class="vacuum-status-badge badge-red">PROBLEM A: CONVENTIONAL ACADEMIA</span>
+          <h3 class="vacuum-title">สารานุกรม & เปเปอร์</h3>
+          <p class="vacuum-desc">แห้ง ตัวหนังสือแน่น เล่าแบบเส้นตรง และยากต่อการนำไปประยุกต์ใช้ในชีวิตจริง</p>
+          <ul class="vacuum-points">
+            <li><span class="icon" style="color:var(--gr-red);">✕</span> ใช้เวลาอ่านนาน 15–45 นาที</li>
+            <li><span class="icon" style="color:var(--gr-red);">✕</span> ขาด Visual Storytelling ดึงดูดสายตา</li>
+            <li><span class="icon" style="color:var(--gr-red);">✕</span> ขาด Everyday Takeaway ชัดเจน</li>
+          </ul>
+        </div>
+
+        <!-- Col 2: The GRURU Solution -->
+        <div class="vacuum-col highlight-center">
+          <span class="vacuum-status-badge badge-lime">THE GRURU SWEET SPOT</span>
+          <h3 class="vacuum-title" style="color:var(--gr-lime);">GRURU MUSEUM</h3>
+          <p class="vacuum-desc" style="color:var(--gr-paper);">สนุกแบบ modern art ผสม sci-fi ตรวจสอบที่มาได้ 100% เชื่อมโยงเป็นกราฟที่สำรวจได้เอง</p>
+          <ul class="vacuum-points">
+            <li><span class="icon" style="color:var(--gr-lime);">✓</span> เข้าใจแก่นความรู้ได้ใน 3 วินาที</li>
+            <li><span class="icon" style="color:var(--gr-lime);">✓</span> กราฟ Data Booming ระเบิดความสัมพันธ์</li>
+            <li><span class="icon" style="color:var(--gr-lime);">✓</span> ทุกเรื่องจบด้วยการนำไปใช้จริงในชีวิต</li>
+          </ul>
+        </div>
+
+        <!-- Col 3 -->
+        <div class="vacuum-col">
+          <span class="vacuum-status-badge badge-gray">PROBLEM B: SHORT-FORM MEDIA</span>
+          <h3 class="vacuum-title">คลิปสั้น 15 วินาที</h3>
+          <p class="vacuum-desc">เพลิดเพลิน สนุกสนาน แต่ตื้นเขิน ไม่บอกแหล่งอ้างอิง และเสี่ยงต่อข้อมูลคลาดเคลื่อน</p>
+          <ul class="vacuum-points">
+            <li><span class="icon" style="color:var(--gr-fog);">✕</span> ไม่มีที่มาของข้อมูล (Zero Provenance)</li>
+            <li><span class="icon" style="color:var(--gr-fog);">✕</span> ข้อมูลกระจัดกระจาย ไม่เชื่อมโยงภาพรวม</li>
+            <li><span class="icon" style="color:var(--gr-fog);">✕</span> ลืมทันทีหลังเลื่อนผ่าน</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 03: PERCEPTUAL MAP ================= -->
+    <section class="slide-frame" id="slide-3">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-POS-003</span>
+          <span class="specimen-category">BRAND POSITIONING</span>
+          <span class="specimen-era">COMPETITIVE MATRIX</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>QUADRANT: EVIDENCE-BASED & NETWORK-DRIVEN</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">PERCEPTUAL POSITIONING MAP</div>
+        <h2 class="slide-title-th">ตำแหน่งที่ไร้คู่แข่ง: “สนุกแต่มีหลักฐาน × เชื่อมเป็นเครือข่าย”</h2>
+      </div>
+
+      <div class="matrix-layout">
+        <!-- Interactive 2x2 Matrix Graphic -->
+        <div class="matrix-canvas-box">
+          <div class="matrix-axis-x"></div>
+          <div class="matrix-axis-y"></div>
+
+          <div class="axis-label axis-top">▲ เชื่อมแบบเครือข่าย (NETWORK / GRAPH)</div>
+          <div class="axis-label axis-bottom">▼ เล่าแบบเส้นตรง (LINEAR ARTICLES)</div>
+          <div class="axis-label axis-left">◄ วิชาการ / ซีเรียส</div>
+          <div class="axis-label axis-right">สนุก / เข้าถึงง่าย ►</div>
+
+          <!-- Wikipedia / Encyclopedias -->
+          <div class="competitor-dot dot-wikipedia" title="Online Encyclopedias (Wikipedia, Academic Repositories)">
+            <strong>สารานุกรมออนไลน์</strong>
+            <span style="font-size:0.65rem;">วิชาการแต่เป็นเส้นตรง</span>
+          </div>
+
+          <!-- TikTok / Reels -->
+          <div class="competitor-dot dot-tiktok" title="Short Video Platforms">
+            <strong>คลิปสั้นโซเชียล</strong>
+            <span style="font-size:0.65rem;">สนุกแต่ตื้นและไร้ที่มา</span>
+          </div>
+
+          <!-- GRURU MUSEUM -->
+          <div class="competitor-dot dot-gruru" title="GRURU MUSEUM: Future Archaeology">
+            <strong>★ GRURU MUSEUM</strong>
+            <span style="font-size:0.7rem; color:#000; background:var(--gr-lime); padding:1px 4px; border-radius:2px; margin-top:2px;">THE BLUE OCEAN</span>
+          </div>
+        </div>
+
+        <!-- Strategy Details -->
+        <div class="hud-card">
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gr-lime); margin-bottom:8px;">
+            STRATEGIC VALUE PROPOSITION
+          </div>
+          <h3 style="font-size:1.35rem; margin-bottom:12px; color:var(--gr-paper);">
+            “อดีตคือข้อมูล อนาคตคือเรื่องเล่า”
+          </h3>
+          <p style="font-size:0.95rem; color:#D2D2DE; margin-bottom:16px;">
+            GRURU MUSEUM ทำหน้าที่เสมือน <strong>“ภัณฑารักษ์จากอนาคต”</strong> ที่ฉลาดแต่ไม่เก๊ก ขี้เล่นแต่มีหลักฐานอ้างอิงทางวิทยาศาสตร์และประวัติศาสตร์เสมอ
+          </p>
+
+          <div style="background:rgba(11,11,15,0.7); border-left:2px solid var(--gr-ember); padding:12px 14px; margin-bottom:12px;">
+            <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--gr-ember);">BRAND PROMISE</div>
+            <div style="font-size:0.9rem; color:var(--gr-paper); font-weight:500;">
+              “ทุกการเยี่ยมชมบนแพลตฟอร์ม จะต้องได้สิ่งที่นำไปใช้ได้จริงในชีวิตประจำวันอย่างน้อย 1 เรื่อง (Everyday Takeaway)”
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 04: TARGET PERSONAS ================= -->
+    <section class="slide-frame" id="slide-4">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-AUD-004</span>
+          <span class="specimen-category">AUDIENCE SEGMENTATION</span>
+          <span class="specimen-era">22–40 DEMOGRAPHIC SPECTRUM</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>USER-CENTRIC ARCHITECTURE</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">TARGET PERSONAS & DESIGN IMPLICATIONS</div>
+        <h2 class="slide-title-th">3 บุคลิกหลัก ขับเคลื่อนการเติบโตของแพลตฟอร์ม</h2>
+      </div>
+
+      <div class="three-second-hook">
+        <span class="three-second-badge">COMMON INSIGHT</span>
+        <span>ทั้ง 3 กลุ่มมีจุดร่วมคือ: <em>“อยากรู้ลึก แต่ไม่อยากรู้สึกว่ากำลังเรียน”</em> แพลตฟอร์มจึงออกแบบเป็น Mobile-First โหมดมืด และอ้างอิงแหล่งที่มาในคลิกเดียว</span>
+      </div>
+
+      <div class="personas-grid">
+        <!-- Persona 1 -->
+        <div class="persona-card">
+          <span class="persona-badge" style="background:rgba(46,230,255,0.15); color:var(--gr-cyan); border:1px solid var(--gr-cyan);">
+            PERSONA 01 • AGE 22–27
+          </span>
+          <h3 class="persona-title">Curious Starter</h3>
+          <div class="persona-meta">นักศึกษาจบใหม่ / First Jobber</div>
+          <p style="font-size:0.88rem; color:var(--gr-fog);">
+            ชอบเสพสื่อสวยงาม ใช้สมาร์ตโฟนเป็นหลัก ต้องการเรื่องเล่ากระชับและสิ่งที่แชร์ต่อในโซเชียลได้ทันที
+          </p>
+          <div class="persona-need-box">
+            <div class="need-label">FEATURE DELIVERABLE</div>
+            <div class="need-text">
+              • เรื่องเล่าภาพที่ดูจบใน <strong>3–5 นาที</strong><br>
+              • การ์ดความรู้ <strong>1080×1350 px</strong> พร้อมแชร์ลง IG / LinkedIn
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div class="persona-card" style="border-color:rgba(215,255,58,0.4);">
+          <span class="persona-badge" style="background:rgba(215,255,58,0.15); color:var(--gr-lime); border:1px solid var(--gr-lime);">
+            PERSONA 02 • AGE 25–34
+          </span>
+          <h3 class="persona-title" style="color:var(--gr-lime);">Creative Professional</h3>
+          <div class="persona-meta">ดีไซเนอร์, ครีเอเตอร์, นักการตลาด, Dev</div>
+          <p style="font-size:0.88rem; color:var(--gr-fog);">
+            มองหาไอเดียสดใหม่ วัตถุดิบสร้างสรรค์ และจุดเชื่อมโยงข้ามศาสตร์ที่ไม่เคยมีใครสังเกต
+          </p>
+          <div class="persona-need-box">
+            <div class="need-label">FEATURE DELIVERABLE</div>
+            <div class="need-text">
+              • <strong>Interactive Graph</strong> กรองและเจาะลึกความสัมพันธ์<br>
+              • ระบบบันทึก Collection & ดาวน์โหลด Dataset
+            </div>
+          </div>
+        </div>
+
+        <!-- Persona 3 -->
+        <div class="persona-card">
+          <span class="persona-badge" style="background:rgba(255,90,31,0.15); color:var(--gr-ember); border:1px solid var(--gr-ember);">
+            PERSONA 03 • AGE 30–40
+          </span>
+          <h3 class="persona-title">Lifelong Learner</h3>
+          <div class="persona-meta">คนทำงานอาวุโส / พ่อแม่รุ่นใหม่</div>
+          <p style="font-size:0.88rem; color:var(--gr-fog);">
+            สนใจที่มาของสิ่งรอบตัว เช่น อาหาร สุขภาพ วิทยาศาสตร์ ต้องการข้อมูลที่เชื่อถือได้และใช้ได้จริง
+          </p>
+          <div class="persona-need-box">
+            <div class="need-label">FEATURE DELIVERABLE</div>
+            <div class="need-text">
+              • แหล่งอ้างอิงทางวิชาการตรวจสอบได้ 100%<br>
+              • สรุป <strong>Everyday Takeaway</strong> ชัดเจน อ่านสบายตา
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 05: 5-PHASE KNOWLEDGE ENGINE ================= -->
+    <section class="slide-frame" id="slide-5">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-ENG-005</span>
+          <span class="specimen-category">CORE ENGINE</span>
+          <span class="specimen-era">5-STEP VALUE CHAIN</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>THE KNOWLEDGE PIPELINE</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">5-PHASE VALUE CHAIN PIPELINE</div>
+        <h2 class="slide-title-th">เครื่องยนต์แปรรูปความรู้: จากอดีตสู่นิสัยประจำวัน</h2>
+      </div>
+
+      <div class="pipeline-layout">
+        <div class="pipeline-steps">
+          <div class="pipeline-step-item active">
+            <div class="step-num">01</div>
+            <div class="step-content">
+              <div class="step-name">EXCAVATE (ขุดค้น)</div>
+              <div class="step-desc">คัดสรรข้อมูลประวัติศาสตร์ วิทยาศาสตร์ และภูมิปัญญา ระบุที่มาทุกชิ้น</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step-item">
+            <div class="step-num">02</div>
+            <div class="step-content">
+              <div class="step-name">DECODE (ถอดรหัส)</div>
+              <div class="step-desc">สกัดข้อมูลเป็น Entities, โหนด และความสัมพันธ์ทางความหมาย (Semantic Links)</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step-item">
+            <div class="step-num">03</div>
+            <div class="step-content">
+              <div class="step-name">RETELL (เล่าใหม่)</div>
+              <div class="step-desc">นำเสนอผ่าน Visual Storytelling สไตล์ modern art ดูจบได้ในไม่กี่นาที</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step-item">
+            <div class="step-num">04</div>
+            <div class="step-content">
+              <div class="step-name">CONNECT (เชื่อมโยง)</div>
+              <div class="step-desc">เปิดให้สำรวจผ่าน Data Booming และ Interactive Knowledge Graph</div>
+            </div>
+          </div>
+
+          <div class="pipeline-step-item">
+            <div class="step-num" style="color:var(--gr-cyan);">05</div>
+            <div class="step-content">
+              <div class="step-name" style="color:var(--gr-cyan);">APPLY (นำไปใช้)</div>
+              <div class="step-desc">ปิดท้ายทุกนิทรรศการด้วย Everyday Takeaway ที่คนรุ่นใหม่นำไปใช้ได้จริงทันที</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pipeline-image-box">
+          <img src="assets/kg-pedestal-dark.png" alt="Knowledge Graph Pedestal Engine">
+          <div style="position:absolute; bottom:12px; left:12px; background:rgba(11,11,15,0.85); padding:6px 12px; font-family:var(--font-mono); font-size:0.75rem; border:1px solid var(--gr-lime); color:var(--gr-lime);">
+            FIG 5.0 // THE MULTI-SOURCE INTEGRATION PEDESTAL
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 06: KNOWLEDGE GRAPH ARCHITECTURE ================= -->
+    <section class="slide-frame" id="slide-6">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-ARCH-006</span>
+          <span class="specimen-category">DATA ONTOLOGY</span>
+          <span class="specimen-era">UNIFIED SEMANTIC MAP</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>6 ACCESSIBLE CATEGORIES & 3 RELATIONS</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">KNOWLEDGE GRAPH ARCHITECTURE</div>
+        <h2 class="slide-title-th">แผนผังรวมภูมิปัญญามนุษยชาติ (A Unified Map of Human Knowledge)</h2>
+      </div>
+
+      <div class="kg-arch-grid">
+        <div class="arch-visual-box">
+          <img src="assets/kg-grand-unified-map.png" alt="Unified Map of Human Knowledge">
+          <div style="position:absolute; bottom:12px; right:12px; background:rgba(11,11,15,0.85); padding:6px 12px; font-family:var(--font-mono); font-size:0.75rem; border:1px solid var(--gr-grid); color:var(--gr-paper);">
+            FIG 6.0 // SEMANTIC RESOLUTION & CROSS-DOMAIN FUSION
+          </div>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div class="hud-card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-lime); margin-bottom:6px;">
+              3 CORE RELATION TYPES
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; font-size:0.85rem;">
+              <div style="background:#0B0B0F; padding:8px; border:1px solid var(--gr-grid);">
+                <span style="color:var(--gr-lime);">― เส้นทึบ</span><br>
+                <strong>influenced</strong><br>
+                <span style="font-size:0.75rem; color:var(--gr-fog);">มีอิทธิพลต่อ</span>
+              </div>
+              <div style="background:#0B0B0F; padding:8px; border:1px solid var(--gr-grid);">
+                <span style="color:var(--gr-cyan);">- - เส้นประ</span><br>
+                <strong>derived_from</strong><br>
+                <span style="font-size:0.75rem; color:var(--gr-fog);">พัฒนามาจาก</span>
+              </div>
+              <div style="background:#0B0B0F; padding:8px; border:1px solid var(--gr-grid);">
+                <span style="color:var(--gr-violet);">··· เส้นจุด</span><br>
+                <strong>used_in</strong><br>
+                <span style="font-size:0.75rem; color:var(--gr-fog);">นำไปใช้ใน</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hud-card">
+            <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-cyan); margin-bottom:6px;">
+              6 COLOR & SHAPE TAXONOMY (COLORBLIND SAFE)
+            </div>
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; font-size:0.8rem;">
+              <div style="color:var(--gr-cyan);">● วงกลม: วิทยาศาสตร์</div>
+              <div style="color:var(--gr-ember);">⬢ หกเหลี่ยม: ประวัติศาสตร์</div>
+              <div style="color:var(--gr-violet);">■ สี่เหลี่ยม: เทคโนโลยี</div>
+              <div style="color:var(--gr-amber);">▲ สามเหลี่ยม: วัฒนธรรม</div>
+              <div style="color:var(--gr-green);">◆ ข้าวหลามตัด: ธรรมชาติ</div>
+              <div style="color:var(--gr-coral);">○ วงแหวน: ศิลปะ</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 07: DATA BOOMING INTERACTIVE SIMULATOR ================= -->
+    <section class="slide-frame" id="slide-7">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-BOOM-007</span>
+          <span class="specimen-category">SIGNATURE INNOVATION</span>
+          <span class="specimen-era">DATA BOOMING LIVE LAB</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>CLICK 'BOOM!' TO WITNESS THE KNOWLEDGE EXPLOSION</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">SIGNATURE EXPERIENCE: DATA BOOMING</div>
+        <h2 class="slide-title-th">นวัตกรรม “Data Booming”: ระเบิดความรู้ใน 3 วินาที</h2>
+      </div>
+
+      <div class="booming-workspace">
+        <div class="booming-stage-area">
+          <!-- Topic Selector -->
+          <div class="booming-topic-selector">
+            <button class="topic-tab-btn active" data-topic="0">เพนิซิลลิน (PENICILLIN)</button>
+            <button class="topic-tab-btn" data-topic="1">การหมักดอง (FERMENTATION)</button>
+            <button class="topic-tab-btn" data-topic="2">ปัญญาประดิษฐ์ (AI)</button>
+          </div>
+
+          <!-- Interactive Booming Canvas -->
+          <canvas id="booming-canvas" class="booming-canvas"></canvas>
+
+          <!-- Booming Controls -->
+          <div class="booming-controls">
+            <button id="btn-trigger-boom" class="btn-primary" style="padding:12px 28px; font-size:1rem;">
+              ⚡ BOOM! ระเบิดความรู้
+            </button>
+          </div>
+        </div>
+
+        <!-- Telemetry & Everyday Takeaway HUD -->
+        <div class="booming-telemetry">
+          <div class="telemetry-card">
+            <div class="telemetry-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              TELEMETRY SENSORS
+            </div>
+            <div id="telemetry-count" class="telemetry-value">0 CONNECTIONS</div>
+            <div id="telemetry-topic-name" style="font-weight:600; color:var(--gr-paper); margin-top:8px;">
+              เพนิซิลลิน (1928)
+            </div>
+            <div id="telemetry-topic-desc" class="telemetry-desc">
+              กดปุ่ม BOOM! เพื่อจำลองการระเบิดของโหนดความรู้ตามสเปก 40ms stagger delay
+            </div>
+          </div>
+
+          <div class="everyday-takeaway-box">
+            <span class="takeaway-badge">EVERYDAY TAKEAWAY</span>
+            <div id="telemetry-takeaway" class="takeaway-text">
+              ความผิดพลาดหรือสิ่งไม่คาดคิดอาจเป็นจุดเริ่มต้นของนวัตกรรมที่ยิ่งใหญ่ อย่าทิ้ง 'ข้อผิดพลาด' ก่อนจะตรวจสอบอย่างละเอียด
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 08: FULL INTERACTIVE FORCE GRAPH ================= -->
+    <section class="slide-frame" id="slide-8">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-GRAPH-008</span>
+          <span class="specimen-category">EXPLORER LAB</span>
+          <span class="specimen-era">FORCE-DIRECTED NETWORK</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>DRAG & EXPLORE DYNAMIC CONNECTIONS</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">INTERACTIVE KNOWLEDGE GRAPH LAB</div>
+        <h2 class="slide-title-th">แผนที่ความรู้ฉบับเต็ม: สำรวจ ลาก และค้นหาความเชื่อมโยง</h2>
+      </div>
+
+      <div class="force-graph-container">
+        <div class="graph-viewport-box">
+          <!-- Category Filter HUD -->
+          <div class="graph-filter-hud">
+            <button class="filter-btn active" data-category="all" style="--filter-color:var(--gr-lime);">ทั้งหมด (ALL)</button>
+            <button class="filter-btn" data-category="science" style="--filter-color:var(--gr-cyan);">วิทยาศาสตร์</button>
+            <button class="filter-btn" data-category="history" style="--filter-color:var(--gr-ember);">ประวัติศาสตร์</button>
+            <button class="filter-btn" data-category="tech" style="--filter-color:var(--gr-violet);">เทคโนโลยี</button>
+            <button class="filter-btn" data-category="culture" style="--filter-color:var(--gr-amber);">วัฒนธรรม</button>
+            <button class="filter-btn" data-category="nature" style="--filter-color:var(--gr-green);">ธรรมชาติ</button>
+            <button class="filter-btn" data-category="art" style="--filter-color:var(--gr-coral);">ศิลปะ</button>
+          </div>
+
+          <!-- Dynamic Graph Canvas -->
+          <canvas id="force-graph-canvas" class="graph-canvas"></canvas>
+        </div>
+
+        <!-- Node Inspector HUD -->
+        <div class="node-inspector-pane">
+          <div class="hud-card" style="border-color:var(--gr-lime);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+              <span id="inspector-specimen" class="mono" style="font-size:0.75rem; color:var(--gr-lime);">GRM-1940-SCI-002</span>
+              <span id="inspector-group" class="mono" style="font-size:0.7rem; border:1px solid var(--gr-cyan); color:var(--gr-cyan); padding:2px 6px;">วิทยาศาสตร์</span>
+            </div>
+            <h3 id="inspector-title" style="font-size:1.35rem; color:var(--gr-paper); margin-bottom:4px;">Penicillin</h3>
+            <div id="inspector-era" class="mono" style="font-size:0.75rem; color:var(--gr-fog); margin-bottom:12px;">ERA: 1940s</div>
+            
+            <p id="inspector-summary" style="font-size:0.88rem; color:#D2D2DE; line-height:1.6; margin-bottom:14px;">
+              ยาปฏิชีวนะชนิดแรกที่ปฏิวัติวงการแพทย์สมัยใหม่ ช่วยชีวิตผู้คนนับร้อยล้านคน
+            </p>
+
+            <div style="background:rgba(215,255,58,0.1); border-left:3px solid var(--gr-lime); padding:10px 12px;">
+              <div style="font-family:var(--font-mono); font-size:0.7rem; color:var(--gr-lime); font-weight:700;">EVERYDAY TAKEAWAY</div>
+              <div id="inspector-takeaway" style="font-size:0.85rem; color:var(--gr-paper); margin-top:4px;">
+                ยาช่วยชีวิตได้เมื่อใช้อย่างตรงจุดและรับประทานครบกำหนด หยุดทานยาปฏิชีวนะเกินความจำเป็น
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 09: 3-SECOND CASE STUDY ================= -->
+    <section class="slide-frame" id="slide-9">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-CASE-009</span>
+          <span class="specimen-category">CASE STUDY</span>
+          <span class="specimen-era">3-SECOND BENCHMARK</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>PROVEN COMPREHENSION SPEED</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">EMPIRICAL PROOF: 3-SECOND COMPREHENSION</div>
+        <h2 class="slide-title-th">กรณีศึกษา: เปลี่ยนโครงสร้างชีววิทยาที่ซับซ้อนให้เข้าใจทันที</h2>
+      </div>
+
+      <div class="case-study-grid">
+        <div class="case-image-box">
+          <img src="assets/kg-plant-infographic.png" alt="Plant Biology Knowledge Graph Example">
+        </div>
+
+        <div class="metrics-comparison-col">
+          <div class="comparison-card" style="border-left:3px solid var(--gr-lime);">
+            <div class="comp-header">
+              <span class="comp-title">เวลาที่ใช้ทำความเข้าใจ (Comprehension Time)</span>
+              <span class="comp-score">95% เร็วขึ้น</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--gr-fog);">
+              จากเดิมต้องอ่านตำราชีววิทยา 10 หน้า (15–20 นาที) กราฟความรู้ของ GRURU สื่อสารระบบ Photosynthesis, คลอโรพลาสต์, พลังงาน และการเชื่อมโยงสู่สิ่งแวดล้อมได้ใน <strong>3 วินาที</strong>
+            </p>
+          </div>
+
+          <div class="comparison-card" style="border-left:3px solid var(--gr-cyan);">
+            <div class="comp-header">
+              <span class="comp-title">อัตราการจดจำความเชื่อมโยง (Retention Rate)</span>
+              <span class="comp-score">4.2x เท่า</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--gr-fog);">
+              ผู้ทดสอบสามารถอธิบายความสัมพันธ์ข้ามศาสตร์ได้ดีกว่ากลุ่มที่อ่านบทความยาวถึง 420% เพราะสมองประมวลผลเครือข่ายความสัมพันธ์ได้เร็วกว่าเส้นตรง
+            </p>
+          </div>
+
+          <div class="comparison-card" style="border-left:3px solid var(--gr-ember);">
+            <div class="comp-header">
+              <span class="comp-title">การนำไปใช้จริง (Everyday Actionability)</span>
+              <span class="comp-score">100%</span>
+            </div>
+            <p style="font-size:0.88rem; color:var(--gr-fog);">
+              ผู้ใช้ทุกคนได้รับข้อคิด Everyday Takeaway ชัดเจน เช่น การเลือกปลูกพืชฟอกอากาศ และเข้าใจสมดุลก๊าซในบ้าน
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 10: DESIGN SYSTEM TOKENS ================= -->
+    <section class="slide-frame" id="slide-10">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-SYS-010</span>
+          <span class="specimen-category">DESIGN SYSTEM</span>
+          <span class="specimen-era">PAST WARM × FUTURE ELECTRIC</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>WCAG AA COMPLIANCE AUDIT CERTIFIED</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">DESIGN LANGUAGE & SYSTEM TOKENS</div>
+        <h2 class="slide-title-th">สัดส่วน 70–20–10 & กติกาอัตลักษณ์ Future Archaeology</h2>
+      </div>
+
+      <div class="tokens-grid">
+        <!-- Palette Tokens -->
+        <div class="hud-card">
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gr-lime); margin-bottom:12px;">
+            PALETTE PROPORTION: 70% BASE • 20% PANEL • 10% ACCENT
+          </div>
+          <div class="color-swatches-grid">
+            <div class="swatch-item">
+              <div class="swatch-color-box" style="background:#0B0B0F;"></div>
+              <div class="swatch-name">Void Black</div>
+              <div class="swatch-hex">#0B0B0F (70%)</div>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color-box" style="background:#17171F;"></div>
+              <div class="swatch-name">Lab Graphite</div>
+              <div class="swatch-hex">#17171F (20%)</div>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color-box" style="background:#D7FF3A;"></div>
+              <div class="swatch-name" style="color:var(--gr-lime);">Specimen Lime</div>
+              <div class="swatch-hex">#D7FF3A (10%)</div>
+            </div>
+            <div class="swatch-item">
+              <div class="swatch-color-box" style="background:#FF5A1F;"></div>
+              <div class="swatch-name" style="color:var(--gr-ember);">Ember Orange</div>
+              <div class="swatch-hex">#FF5A1F</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Typography & Components -->
+        <div class="hud-card">
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gr-cyan); margin-bottom:12px;">
+            TYPOGRAPHY & HUD COMPONENT RULES
+          </div>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:10px; font-size:0.88rem;">
+            <li><strong style="color:var(--gr-paper);">Chakra Petch:</strong> หัวเรื่องทรงเหลี่ยม sci-fi ชัดเจน</li>
+            <li><strong style="color:var(--gr-paper);">IBM Plex Sans Thai:</strong> เนื้อหาอ่านง่าย สไตล์เอกสารวิจัย</li>
+            <li><strong style="color:var(--gr-lime);">IBM Plex Mono:</strong> รหัส Specimen Label และพิกัด Telemetry</li>
+            <li><strong style="color:var(--gr-ember);">การ์ดตัดมุม 45° 12px:</strong> เอกลักษณ์ HUD Panel ของพิพิธภัณฑ์</li>
+            <li><strong style="color:var(--gr-lime);">เงาปุ่ม 4px 4px 0 #FF5A1F:</strong> เงาแข็งสไตล์ Modern Art</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 11: 4 EXHIBITION HALLS ================= -->
+    <section class="slide-frame" id="slide-11">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-ECO-011</span>
+          <span class="specimen-category">PRODUCT ECOSYSTEM</span>
+          <span class="specimen-era">HALL ARCHITECTURE</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>THE 4 HALLS NAVIGATION</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">EXHIBITION HALLS ECOSYSTEM</div>
+        <h2 class="slide-title-th">สถาปัตยกรรมห้องจัดแสดงดิจิทัล (The 4 Halls)</h2>
+      </div>
+
+      <div class="halls-grid">
+        <div class="hall-card">
+          <span class="hall-badge">HALL 01</span>
+          <h3 class="hall-name">Exhibitions</h3>
+          <p class="hall-desc">
+            เรื่องเล่าแบบ Visual Storytelling ที่ดูจบได้ใน 3–5 นาที ถอดรหัสวัตถุโบราณและประวัติศาสตร์มนุษย์
+          </p>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-fog); margin-top:auto;">
+            FORMAT: SCROLLABLE NARRATIVE
+          </div>
+        </div>
+
+        <div class="hall-card" style="border-color:var(--gr-cyan);">
+          <span class="hall-badge" style="color:var(--gr-cyan); background:rgba(46,230,255,0.1);">HALL 02</span>
+          <h3 class="hall-name">Knowledge Graph</h3>
+          <p class="hall-desc">
+            แผนที่ความรู้ฉบับเต็มแบบ Force-Directed ให้ผู้ใช้สำรวจ ค้นหา กรองหมวด และเจาะลึกความสัมพันธ์
+          </p>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-fog); margin-top:auto;">
+            FORMAT: CANVAS / D3 PHYSICS
+          </div>
+        </div>
+
+        <div class="hall-card" style="border-color:var(--gr-lime);">
+          <span class="hall-badge" style="color:var(--gr-lime); background:rgba(215,255,58,0.1);">HALL 03</span>
+          <h3 class="hall-name">Data Booming</h3>
+          <p class="hall-desc">
+            ห้องทดลองระเบิดความรู้ เริ่มจากโหนดเดียวสู่โครงข่ายความรู้หลายชั้น พร้อมเสียงและ Telemetry HUD
+          </p>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-fog); margin-top:auto;">
+            FORMAT: RADIAL EXPLOSION
+          </div>
+        </div>
+
+        <div class="hall-card" style="border-color:var(--gr-ember);">
+          <span class="hall-badge" style="color:var(--gr-ember); background:rgba(255,90,31,0.1);">HALL 04</span>
+          <h3 class="hall-name">Everyday Lab</h3>
+          <p class="hall-desc">
+            ศูนย์รวม Everyday Takeaway, การ์ดสรุปสำหรับโซเชียล และคลังชุดข้อมูลเปิด (Open Dataset)
+          </p>
+          <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--gr-fog); margin-top:auto;">
+            FORMAT: ACTION TOOLKIT
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SLIDE 12: EXECUTIVE ACTION & ROADMAP ================= -->
+    <section class="slide-frame" id="slide-12">
+      <div class="specimen-header">
+        <div class="specimen-tag">
+          <span class="specimen-id">GRM-2026-EXEC-012</span>
+          <span class="specimen-category">EXECUTIVE DECISION</span>
+          <span class="specimen-era">NEXT STEPS & APPROVAL</span>
+        </div>
+        <div class="specimen-source-tag">
+          <span>RECOMMENDED EXECUTIVE ACTIONS</span>
+        </div>
+      </div>
+
+      <div class="slide-title-block">
+        <div class="slide-subtitle-en">IMPLEMENTATION ROADMAP & STRATEGIC APPROVAL</div>
+        <h2 class="slide-title-th">แผนการดำเนินงาน 4 เฟส & ข้อเสนอเพื่อขออนุมัติ</h2>
+      </div>
+
+      <div class="roadmap-container">
+        <div class="milestone-card">
+          <div class="milestone-phase">PHASE 01 • สัปดาห์ 1-2</div>
+          <div class="milestone-title">Design Tokens & Style Guide</div>
+          <div class="milestone-duration">สถานะ: สำเร็จ 100%</div>
+          <div class="milestone-progress"><div class="milestone-bar" style="width:100%;"></div></div>
+          <p class="milestone-text">ระบบสี, ฟอนต์ Chakra Petch, HUD Card 45°, ตรวจสอบ WCAG AA</p>
+        </div>
+
+        <div class="milestone-card" style="border-color:var(--gr-lime);">
+          <div class="milestone-phase">PHASE 02 • สัปดาห์ 3-5</div>
+          <div class="milestone-title">Core Exhibition Halls</div>
+          <div class="milestone-duration">สถานะ: พร้อมลงโค้ด 80%</div>
+          <div class="milestone-progress"><div class="milestone-bar" style="width:80%;"></div></div>
+          <p class="milestone-text">เทมเพลตนิทรรศการ HALL 01-04, Data Booming Radial Engine</p>
+        </div>
+
+        <div class="milestone-card">
+          <div class="milestone-phase">PHASE 03 • สัปดาห์ 6-8</div>
+          <div class="milestone-title">D3 Force Knowledge Graph</div>
+          <div class="milestone-duration">สถานะ: อยู่ระหว่างพัฒนา 60%</div>
+          <div class="milestone-progress"><div class="milestone-bar" style="width:60%;"></div></div>
+          <p class="milestone-text">Canvas Physics Engine, นำเข้า 50-500 โหนด, ตัวกรองหมวดและยุคสมัย</p>
+        </div>
+
+        <div class="milestone-card">
+          <div class="milestone-phase">PHASE 04 • สัปดาห์ 9-10</div>
+          <div class="milestone-title">Public Launch & Viral Loop</div>
+          <div class="milestone-duration">สถานะ: วางแผน 25%</div>
+          <div class="milestone-progress"><div class="milestone-bar" style="width:25%;"></div></div>
+          <p class="milestone-text">ระบบสร้างการ์ดแชร์โซเชียล 1080x1350 px, สรุปผลลัพธ์ผู้บริหาร</p>
+        </div>
+      </div>
+
+      <div class="executive-action-bar">
+        <div>
+          <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--gr-lime); margin-bottom:4px;">
+            RECOMMENDED EXECUTIVE ACTION
+          </div>
+          <h3 style="font-size:1.2rem; color:var(--gr-paper);">
+            อนุมัติการดำเนินโครงการ GRURU MUSEUM สู่ระยะการพัฒนา Production
+          </h3>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <button class="btn-primary" onclick="window.GRURU_NAV.goToSlide(7)">
+            ⚡ ทดลอง Data Booming สด
+          </button>
+          <button class="btn-secondary" onclick="window.GRURU_NAV.goToSlide(1)">
+            ↺ นำเสนอใหม่อีกครั้ง
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Executive Speaker Notes Drawer (Toggled with N) -->
+  <aside id="notes-drawer" class="notes-drawer">
+    <div class="notes-header">
+      <div class="notes-title">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path></svg>
+        SPEAKER NOTES & EXECUTIVE SCRIPT (PRESS 'N' TO TOGGLE)
+      </div>
+      <button class="nav-arrow-btn" onclick="window.GRURU_NAV.toggleNotes(false)">✕</button>
+    </div>
+    <div id="notes-content" class="notes-content">
+      <!-- Injected dynamically via JS -->
+    </div>
+  </aside>
+
+  <!-- Slide Thumbnail Grid Drawer (Toggled with G) -->
+  <aside id="grid-drawer" class="grid-drawer">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--gr-grid); padding-bottom:12px;">
+      <div style="font-family:var(--font-mono); font-size:0.9rem; color:var(--gr-lime); letter-spacing:2px;">
+        INDEX OF EXHIBITION SLIDES (12 SLIDES)
+      </div>
+      <button class="nav-arrow-btn" onclick="window.GRURU_NAV.toggleGrid(false)">✕ CLOSE</button>
+    </div>
+    <div class="thumbnails-deck">
+      <div class="thumb-card active" onclick="window.GRURU_NAV.goToSlide(1)">
+        <span class="thumb-num">01 // HERO</span>
+        <span class="thumb-title">GRURU MUSEUM วิสัยทัศน์</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(2)">
+        <span class="thumb-num">02 // OPPORTUNITY</span>
+        <span class="thumb-title">ช่องว่างในตลาด (Market Vacuum)</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(3)">
+        <span class="thumb-num">03 // POSITIONING</span>
+        <span class="thumb-title">Perceptual Matrix 2x2</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(4)">
+        <span class="thumb-num">04 // PERSONAS</span>
+        <span class="thumb-title">3 กลุ่มเป้าหมาย 22–40 ปี</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(5)">
+        <span class="thumb-num">05 // ENGINE</span>
+        <span class="thumb-title">โมเดล 5 ขั้นตอน (Excavate ➔ Apply)</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(6)">
+        <span class="thumb-num">06 // ONTOLOGY</span>
+        <span class="thumb-title">Knowledge Graph Architecture</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(7)">
+        <span class="thumb-num">07 // BOOMING</span>
+        <span class="thumb-title">⚡ Interactive Data Booming</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(8)">
+        <span class="thumb-num">08 // GRAPH LAB</span>
+        <span class="thumb-title">Force-Directed Graph Explorer</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(9)">
+        <span class="thumb-num">09 // CASE STUDY</span>
+        <span class="thumb-title">3-Second Comprehension Proof</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(10)">
+        <span class="thumb-num">10 // DESIGN SYSTEM</span>
+        <span class="thumb-title">ระบบสี 70-20-10 & HUD Cut</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(11)">
+        <span class="thumb-num">11 // ECOSYSTEM</span>
+        <span class="thumb-title">HALL 01 ถึง HALL 04</span>
+      </div>
+      <div class="thumb-card" onclick="window.GRURU_NAV.goToSlide(12)">
+        <span class="thumb-num">12 // ROADMAP</span>
+        <span class="thumb-title">แผนการดำเนินงาน & ข้อเสนออนุมัติ</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Load Data and Application Scripts -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
